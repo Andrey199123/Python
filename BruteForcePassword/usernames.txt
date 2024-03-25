@@ -1,0 +1,17 @@
+root
+admin
+test
+guest
+info
+adm
+mysql
+user
+administrator
+oracle
+ftp
+pi
+puppet
+toor
+sudo
+who
+wow
