@@ -1,6 +1,7 @@
 /*Andrey Vasilyev 4/21/24*/
 :root {
   --margin-vw: calc(100vw / 3);
+  --margin-l: calc(100vw / 2);
 }
 
 body {
@@ -24,19 +25,22 @@ input[type="text"] {
     margin-right: var(--margin-vw);
 }
 
+.image-container {
+    position: absolute; /* Absolute positioning */
+    top: 0; /* Align to top edge of container */
+    left: 0; /* Align to left edge of container */
+    align-items: left; /* Optional: Maintain horizontal alignment */
+}
+
 .navbar {
     background: #131313;
     width: 100vw;
     height: 60px;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
     font-size: 1.2rem;
     position: sticky;
     top: 0;
-    z-index: 999;
 }
-
 #navbar__logo {
     background-co: #ff8177;
     background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
@@ -47,9 +51,14 @@ input[type="text"] {
     -moz-text-fill-color: transparent;
     display: flex;
     align-items: center;
+    justify-items: center;
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
+    top: 0;
+    margin-left: var(--margin-l);
+    margin-top: 0;
+
 }
 
 #outcome {

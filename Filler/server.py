@@ -1,5 +1,4 @@
 # Andrey Vasilyev 4/21/24
-from typing import Optional
 import boards
 import solve
 from flask import Flask, render_template, request, jsonify, redirect
@@ -36,6 +35,11 @@ def handle_input():
 @app.route('/fetch', methods=['GET'])
 def fetch():
     return board.print_score()
+
+
+@app.route('/info', methods=['GET'])
+def info():
+    return render_template('info.html')
 
 
 @app.route('/play', methods=['POST'])
