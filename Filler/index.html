@@ -1,0 +1,75 @@
+<!-- Andrey Vasilyev 4/21/24 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- only shows up on Google -->
+    <title>Filler by Andrey Vasilyev</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <div id="parent">
+        <div>
+            <nav class="navbar">
+                <div class="navbar__container">
+                    <a href="/" id="navbar__logo">Filler</a>
+                </div>
+            </nav>
+        </div>
+        <div>
+            <div class="grid-container">
+                {% for row in board %}
+                    {% for tile in row %}
+                        <div class="square color-{{ tile }}"></div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div>
+            <input type="text" id="inputField" placeholder="Enter a color...">
+            <p id="output"></p>
+            <script>
+            var inputField = document.getElementById("inputField");
+            inputField.focus();
+            inputField.addEventListener("keypress", function(event) {
+                if (event.keyCode === 13) {
+                    var inputValue = inputField.value.trim();
+                    if (inputValue !== '') {
+                        fetch('/handle_input', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ input: inputValue })
+                        }).then(response => {
+                            console.log("Input sent to server:", inputValue);
+                        }).catch(error => {
+                            console.error("Error:", error);
+                        });
+                    }
+                    inputField.value = '';
+                    event.preventDefault();
+                    location.reload()
+                }
+            });
+            </script>
+            <button class="btn" id="submit">Done!</button>
+            <script>
+                document.getElementById("submit").addEventListener("click", function() {
+                    fetch('/fetch')  // Send a GET request to '/fetch_text' endpoint
+                        .then(response => response.text())  // Extract the text from the response
+                        .then(text => {
+                            // Display the text in the output paragraph
+                            document.getElementById("submit").textContent = text;
+                        })
+                        .catch(error => {
+                            // Handle any errors that occur during the fetch
+                            console.error("Error fetching text:", error);
+                        });
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html>
