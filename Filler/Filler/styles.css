@@ -1,0 +1,138 @@
+/*Andrey Vasilyev 4/21/24*/
+:root {
+  --margin-vw: calc(100vw / 3);
+  --margin-l: calc(100vw / 2);
+}
+
+body {
+    background-color: rgb(124, 149, 93); /*Chess.com Green*/
+    margin: 0;
+    horizontal-align: middle;
+}
+
+.grid-container {
+    display: grid;
+    margin-left: var(--margin-vw);
+    margin-right: var(--margin-vw);
+    margin-top: 10px;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+    background-color: rgb(124, 149, 93);
+}
+
+input[type="text"] {
+    margin-left: var(--margin-vw);
+    margin-right: var(--margin-vw);
+}
+
+.image-container {
+    position: absolute; /* Absolute positioning */
+    top: 0; /* Align to top edge of container */
+    left: 0; /* Align to left edge of container */
+    align-items: left; /* Optional: Maintain horizontal alignment */
+}
+
+.navbar {
+    background: #131313;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+}
+#navbar__logo {
+    background-co: #ff8177;
+    background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+    top: 0;
+    margin-left: var(--margin-l);
+    margin-top: 0;
+
+}
+
+#outcome {
+    background-co: #ff8177;
+    background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+    margin-left: var(--margin-vw);
+    z-index: 999;
+}
+
+.btn {
+    padding: 15px 40px;
+    border: none;
+    outline: none;
+    color: #FFF;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 12px;
+    margin-left: var(--margin-vw);
+}
+
+.btn::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+.btn::before {
+    content: "";
+    background: linear-gradient(
+    45deg,
+    #FF0000, #FF7300, #FFFB00, #48F00, #00FFD5, #002BFF, #FF00C8, #FF0000);
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+    opacity: 1;
+}
+
+.btn:active::after {
+    background: transparent;
+}
+
+.btn:active {
+    color: #000;
+    font-weight: bold;
+}
+
+.color-r { background-color: rgb(230, 90, 107); } /*red*/
+.color-g { background-color: rgb(172, 212, 100); } /*green*/
+.color-b { background-color: rgb(88, 166, 240); } /*blue*/
+.color-y { background-color: rgb(250, 226, 81); } /*yellow*/
+.color-p { background-color: rgb(88, 65, 133); } /*purple*/
+.color-bl { background-color: rgb(56, 56, 56); } /*black*/
