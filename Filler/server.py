@@ -10,6 +10,7 @@ board.create_random(seed=None)  # create a random board
 
 depth = None
 
+current_move = False
 
 @app.route('/')
 def index():
@@ -23,14 +24,24 @@ def handle_input():
     move = data.get('input')
     if move not in board.get_legal_moves(0):
         return render_template('index.html', board=board.board)
-    if move == "q":
-        return "Game over!"
     board = board.add_move(move=move, player=0)  # add user move to the board
     solver = solve.Solver(player=1, maxdepth=depth)  # instantiate new solver
     opp_move, _ = solver.choose_move(board=board, depth=depth)  # choose move for opponent
     board = board.add_move(move=opp_move, player=1)  # add opponent move to the board
     return render_template('index.html', board=board.board)
 
+
+@app.route('/twoplayerinput', methods=['POST'])
+def twoplayerinput():
+    global board
+    global current_move
+    data = request.json
+    move = data.get('input')
+    if move not in board.get_legal_moves(0):
+        return render_template('twoplayer.html', board=board.board)
+    board = board.add_move(move=move, player=int(current_move))  # add user move to the board
+    current_move = not current_move
+    return render_template('twoplayer.html', board=board.board)
 
 @app.route('/fetch', methods=['GET'])
 def fetch():
@@ -40,6 +51,11 @@ def fetch():
 @app.route('/info', methods=['GET'])
 def info():
     return render_template('info.html')
+
+
+@app.route('/two_player', methods=['GET'])
+def two_player():
+    return render_template('twoplayer.html', board=board.board)
 
 
 @app.route('/play', methods=['POST'])
