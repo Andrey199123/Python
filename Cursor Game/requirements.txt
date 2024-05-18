@@ -1,0 +1,4 @@
+Pillow==10.3.0
+pygame==2.5.2
+pyglet==2.0.15
+stopwatch.py==2.0.1
