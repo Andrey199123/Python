@@ -36,6 +36,3 @@ Each project lives in its own folder and may have different dependencies, asset 
 
 There is no repository-wide install command because the projects are intentionally independent.
 
-## Learning mindset
-
-This archive is best viewed as a record of experimentation: rapid iteration, curiosity-driven development, and the messy early steps that lead to stronger engineering skills over time.
