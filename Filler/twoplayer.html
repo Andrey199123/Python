@@ -62,14 +62,13 @@
                         headers: {
                             'Content-Type': 'application/json'},
                             body: JSON.stringify({ input: inputValue })
-                        }).then(response => {console.log("Input sent to server:", inputValue);
+                        }).then(response => {location.reload();
                         }).catch(error => {
                             console.error("Error:", error);
                         });
                     }
                     inputField.value = '';
                     event.preventDefault();
-                    location.reload()
                     }
                 });
             </script>
