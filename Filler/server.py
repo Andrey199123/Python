@@ -13,6 +13,13 @@ depth = 2
 
 current_move = False
 
+def normalize_color(value):
+    if not isinstance(value, str):
+        return None
+    value = value.strip().lower()
+    return {'red': 'r', 'green': 'g', 'blue': 'b', 'yellow': 'y',
+            'purple': 'p', 'black': 'bl'}.get(value, value)
+
 @app.before_request
 def load_game():
     global board, current_move
@@ -52,7 +59,7 @@ def index():
 @app.route('/handle_input', methods=['POST'])
 def handle_input():
     data = request.json
-    move = data.get('input')
+    move = normalize_color(data.get('input'))
     if move not in board.get_legal_moves(0):
         return render_template('index.html', board=board.board)
     g.board = board.add_move(move=move, player=0)  # add user move to the board
@@ -66,7 +73,7 @@ def handle_input():
 @app.route('/twoplayerinput', methods=['POST'])
 def twoplayerinput():
     data = request.json
-    move = data.get('input')
+    move = normalize_color(data.get('input'))
     if move not in board.get_legal_moves(int(g.turn)):
         return render_template('twoplayer.html', board=board.board)
     g.board = board.add_move(move=move, player=int(g.turn))
