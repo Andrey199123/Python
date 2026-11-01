@@ -36,19 +36,6 @@ Each project lives in its own folder and may have different dependencies, asset 
 
 There is no repository-wide install command because the projects are intentionally independent.
 
-## Notes and responsibility
-
-A few older experiments in this archive involve scraping, credential handling, or network access. Those are educational examples, not secure application patterns or recommended production templates.
-
-Before running anything that touches files, emails, network traffic, or credentials:
-
-- inspect the code carefully
-- avoid using real credentials or personal data
-- do not target systems without explicit authorization
-- treat any scraped or exported data as potentially sensitive
-
-Sensitive sample files and local credential data were removed from the public repository.
-
 ## Learning mindset
 
 This archive is best viewed as a record of experimentation: rapid iteration, curiosity-driven development, and the messy early steps that lead to stronger engineering skills over time.
